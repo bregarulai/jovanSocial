@@ -5,12 +5,14 @@ import { Feed, LeftBar, RightBar, TopBar } from "../../components";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <TopBar />
-      <LeftBar />
-      <Feed />
-      <RightBar />
-    </div>
+      <div className="homeContainer">
+        <LeftBar />
+        <Feed />
+        <RightBar />
+      </div>
+    </>
   );
 };
 
