@@ -32,35 +32,11 @@
     margin-bottom: 2rem;
 }
 
-.rightBarWrapperFriend {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
 
-.rightBarWrapperFriendImgContainer {
-    margin-right: 1rem;
-    position: relative;
-}
 
-.rightBarWrapperFriendImg {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    object-fit: cover;
-}
 
-.rightBarWrapperFriendBadge {
-    width: 1.4rem;
-    height: 1.4rem;
-    border-radius: 50%;
-    background-color: limegreen;
-    position: absolute;
-    top: -.1rem;
-    right: -.1rem;
-    border: .2rem solid white;
-}
 
-.rightBarWrapperFriendName {
-    font-weight: 500;
-}
+
+
+
+
