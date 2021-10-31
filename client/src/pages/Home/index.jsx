@@ -1,12 +1,15 @@
 import React from "react";
 
 import "./home.css";
-import { TopBar } from "../../components";
+import { Feed, LeftBar, RightBar, TopBar } from "../../components";
 
 const Home = () => {
   return (
     <div>
       <TopBar />
+      <LeftBar />
+      <Feed />
+      <RightBar />
     </div>
   );
 };
