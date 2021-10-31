@@ -2,23 +2,16 @@ import React from "react";
 
 import "./feed.css";
 import { Share, Post } from "../../components";
+import { Posts } from "../../dummyData";
 
 const Feed = () => {
   return (
     <div className="feed">
       <div className="feedWrapper">
         <Share />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {Posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
       </div>
     </div>
   );

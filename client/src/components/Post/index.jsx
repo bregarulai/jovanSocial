@@ -2,28 +2,36 @@ import { MoreVert } from "@material-ui/icons";
 import React from "react";
 
 import "./post.css";
+import { Users } from "../../dummyData";
 
-const Post = () => {
+const Post = ({ post }) => {
+  const user = Users.filter((user) => user.id === 1);
+
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              src="/assets/person/1.jpeg"
+              src={
+                Users.filter((user) => user.id === post.userId)[0]
+                  .profilePicture
+              }
               alt="user"
               className="postTopLeftImg"
             />
-            <span className="postTopLeftName">Jane</span>
-            <span className="postTopLeftDate">5 min ago</span>
+            <span className="postTopLeftName">
+              {Users.filter((user) => user.id === post.userId)[0].username}
+            </span>
+            <span className="postTopLeftDate">{post.date}</span>
           </div>
           <div className="postTopRight">
             <MoreVert className="postTopRightIcon" />
           </div>
         </div>
         <div className="postCenter">
-          <span className="postCenterText">Hey! it's my first post.</span>
-          <img src="/assets/post/1.jpeg" alt="post" className="postCenterImg" />
+          <span className="postCenterText">{post?.desc}</span>
+          <img src={post.photo} alt="post" className="postCenterImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
@@ -37,10 +45,12 @@ const Post = () => {
               alt="like"
               className="postBottomLeftImg"
             />
-            <span className="postBottomLeftCounter">15 people liked it</span>
+            <span className="postBottomLeftCounter">
+              {post.like} people liked it
+            </span>
           </div>
           <div className="postBottomRight">
-            <span className="postBottomRightText">5 comments</span>
+            <span className="postBottomRightText">{post.comment} comments</span>
           </div>
         </div>
       </div>
