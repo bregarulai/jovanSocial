@@ -16,7 +16,7 @@
 .topBarLogo {
     font-size: 2.4rem;
     margin-left: 2rem;
-    font-weight: bold;
+    font-weight: 500;
     color: white;
     cursor: pointer;
 }
