@@ -32,8 +32,49 @@
     margin-bottom: 2rem;
 }
 
+.rightBarTittle {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
 
+.rightBarInfo {
+    margin-bottom: 3rem;
+}
 
+.rightBarInfoItem {
+    margin-bottom: 1rem;
+}
+
+.rightBarInfoKey {
+    font-weight: 500;
+    margin-right: 1.5rem;
+    color: #555;
+}
+
+.rightBarInfoValue {
+    font-weight: 300;
+}
+
+.rightBarFollowings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.rightBarFollowing {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.rightBarFollowingImg {
+    width: 10rem;
+    height: 10rem;
+    border-radius: .5rem;
+    object-fit: cover;
+}
 
 
 
