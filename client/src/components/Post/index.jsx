@@ -1,14 +1,24 @@
 import { MoreVert } from "@material-ui/icons";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { format } from "timeago.js";
 
 import "./post.css";
-import { Users } from "../../dummyData";
 
 const Post = ({ post }) => {
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  console.log("PF: ", PF);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`users/${post.userId}`);
+      setUser(res.data);
+    };
+
+    fetchUser();
+  }, [post.userId]);
 
   const likedHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -21,17 +31,12 @@ const Post = ({ post }) => {
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              src={
-                Users.filter((user) => user.id === post.userId)[0]
-                  .profilePicture
-              }
+              src={PF + user.profilePicture}
               alt="user"
               className="postTopLeftImg"
             />
-            <span className="postTopLeftName">
-              {Users.filter((user) => user.id === post.userId)[0].username}
-            </span>
-            <span className="postTopLeftDate">{post.date}</span>
+            <span className="postTopLeftName">{user.username}</span>
+            <span className="postTopLeftDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert className="postTopRightIcon" />
@@ -39,7 +44,7 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter">
           <span className="postCenterText">{post?.desc}</span>
-          <img src={PF + post.photo} alt="post" className="postCenterImg" />
+          <img src={PF + post.img} alt="post" className="postCenterImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
@@ -56,7 +61,7 @@ const Post = ({ post }) => {
               onClick={likedHandler}
             />
             <span className="postBottomLeftCounter">
-              {like} people liked it
+              {like > 0 ? `${like} people liked it` : "no likes"}
             </span>
           </div>
           <div className="postBottomRight">

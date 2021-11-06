@@ -1,5 +1,6 @@
 import { Person, Search, Chat, Notifications } from "@material-ui/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./topBar.css";
 
@@ -7,7 +8,9 @@ const TopBar = () => {
   return (
     <div className="topBarContainer">
       <div className="topBarLeft">
-        <span className="topBarLogo">Jovan Social</span>
+        <Link to="/">
+          <span className="topBarLogo">Jovan Social</span>
+        </Link>
       </div>
       <div className="topBarCenter">
         <div className="searchbar">
