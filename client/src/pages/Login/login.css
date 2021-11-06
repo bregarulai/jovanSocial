@@ -64,6 +64,17 @@
     font-weight: 500;
     font-size: 2rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginButton:focus {
+    outline: none;
+}
+
+.loginButton:disabled {
+    cursor: not-allowed;
 }
 
 .loginForgot {
@@ -82,4 +93,11 @@
     font-weight: 500;
     font-size: 2rem;
     cursor: pointer;
+}
+
+.loginRegisterButton:focus {
+    outline: none;
+}
+.loginRegisterButton:disabled {
+    cursor: not-allowed;
 }
