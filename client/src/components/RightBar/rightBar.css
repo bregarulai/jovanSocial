@@ -32,6 +32,30 @@
     margin-bottom: 2rem;
 }
 
+.rightBarFollowButton {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: #1872f2;
+    color: white;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.rightBarFollowButton:focus {
+    outline: none;
+}
+
+.rightBarFollowButtonIcon {
+    font-size: 2rem !important;
+    margin-left: .5rem;
+}
+
 .rightBarTittle {
     font-size: 1.8rem;
     font-weight: 500;

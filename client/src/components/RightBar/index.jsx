@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./rightBar.css";
 import { Online } from "../../components";
 import { Users } from "../../dummyData";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { Add } from "@material-ui/icons";
 
 const RightBar = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
+  const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const getUsersFriends = async () => {
@@ -49,6 +52,12 @@ const RightBar = ({ user }) => {
   const ProfileRightBar = () => {
     return (
       <>
+        {user.username !== currentUser.username && (
+          <button className="rightBarFollowButton">
+            Follow
+            <Add className="rightBarFollowButtonIcon" />
+          </button>
+        )}
         <h4 className="rightBarTittle">User information</h4>
         <div className="rightBarInfo">
           <div className="rightBarInfoItem">
