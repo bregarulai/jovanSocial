@@ -6,24 +6,53 @@ import { Users } from "../../dummyData";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add } from "@material-ui/icons";
+import { Add, Remove } from "@material-ui/icons";
+import { ActionTypes } from "../../context/constants";
 
 const RightBar = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
-  const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const [followed, setFollowed] = useState(
+    currentUser.followings.includes(user?._id)
+  );
+
+  useEffect(() => {
+    setFollowed(currentUser.followings.includes(user?._id));
+  }, [currentUser.followings, user?._id]);
 
   useEffect(() => {
     const getUsersFriends = async () => {
       try {
-        const res = await axios.get(`/users/friends/${user._id}`);
+        const res = await axios.get(`/users/friends/${user?._id}`);
         setFriends(res.data);
       } catch (err) {
         console.log("ERROR: ", err);
       }
     };
     getUsersFriends();
-  }, [user._id]);
+  }, [user?._id]);
+
+  const handleFollow = async (e) => {
+    e.preventDefault();
+    try {
+      if (followed) {
+        await axios.put(`/users/${user._id}/unfollow`, {
+          userId: currentUser._id,
+        });
+        dispatch({ type: ActionTypes.UNFOLLOW, payload: user._id });
+      } else {
+        await axios.put(`/users/${user._id}/follow`, {
+          userId: currentUser._id,
+        });
+        dispatch({ type: ActionTypes.FOLLOW, payload: user._id });
+      }
+    } catch (err) {
+      console.log("ERRO: ", err);
+    }
+    setFollowed(!followed);
+  };
+
   const HomeRightBar = () => {
     return (
       <>
@@ -53,9 +82,13 @@ const RightBar = ({ user }) => {
     return (
       <>
         {user.username !== currentUser.username && (
-          <button className="rightBarFollowButton">
-            Follow
-            <Add className="rightBarFollowButtonIcon" />
+          <button className="rightBarFollowButton" onClick={handleFollow}>
+            {followed ? "Unfollow" : "Follow"}
+            {followed ? (
+              <Remove className="rightBarFollowButtonIcon" />
+            ) : (
+              <Add className="rightBarFollowButtonIcon" />
+            )}
           </button>
         )}
         <h4 className="rightBarTittle">User information</h4>
