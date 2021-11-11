@@ -30,13 +30,13 @@ const Share = () => {
       data.append("file", file);
       newPost.img = fileName;
       try {
-        const res = await axios.post(`/upload`, data);
+        await axios.post(`/upload`, data);
       } catch (err) {
         console.log("ERROR: ", err);
       }
     }
     try {
-      const res = await axios.post(`/posts`, newPost);
+      await axios.post(`/posts`, newPost);
       window.location.reload();
     } catch (err) {
       console.log("ERROR: ", err);

@@ -29,7 +29,7 @@ const Post = ({ post }) => {
 
   const likedHandler = async () => {
     try {
-      const res = await axios.put(`/posts/${post._id}/like`, {
+      await axios.put(`/posts/${post._id}/like`, {
         userId: currentUser._id,
       });
     } catch (err) {
